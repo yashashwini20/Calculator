@@ -1,0 +1,103 @@
+import { e } from "mathjs";
+import React from "react";
+import { useState } from "react";
+
+interface Iprop{
+    EmpId:number,
+    EmpName:string,
+    EmpMob:number,
+    Email?:string,
+    Pass:any,
+    ConfirmPass:any
+}
+
+ const ResigtrationForm = () =>{
+
+    const[userReg, setUserReg] = useState<Iprop>({
+        EmpId:0,
+        EmpName:"",
+        EmpMob:0,
+        Email:"",
+        Pass:"",
+        ConfirmPass:""
+    });
+
+    const[record, setRecord] = useState<Iprop[]>([]);
+
+    const handleInput = (e: { target: { name: string , value: string ; }; }) => {
+        const name= e.target.name;
+        const value =  e.target.value;
+
+        setUserReg({...userReg, [name] : value})  //getting value from userReg and set the value by dynamic data set
+    }
+
+    const handleSubmit = () =>{
+        // e.preventDefault();
+    const newRecord = {...userReg , id : new Date().getTime.toString() }   //whatever we are typing add to newRec
+    // setRecord([...record , newRecord]);     //previous or future data are store in this
+        
+    setUserReg({EmpId: 0 ,EmpName:"", EmpMob:0, Email:"", Pass:"", ConfirmPass:""})
+    }
+
+  
+         return(
+            <>
+                <form action="" onSubmit={handleSubmit}>
+                    <div>
+                        <label htmlFor="EmpId">Employee Id</label>
+                        <input type="text" required autoComplete="off" 
+                        value={userReg.EmpId}
+                        onChange={handleInput}
+                        name="EmpId" id="EmpId" />
+                    </div>
+
+                    <div>
+                        <label htmlFor="EmpName">Employee Name</label>
+                        <input type="text" required autoComplete="off"
+                         value={userReg.EmpName}
+                         onChange={handleInput}
+                        name="EmpName" id="EmpName" />
+                    </div>
+
+                    <div>
+                        <label htmlFor="EmpMob">Employee Mobile Number</label>
+                        <input placeholder="+91 XXXXXXXXXX" required type="text" autoComplete="off" 
+                         value={userReg.EmpMob}
+                         onChange={handleInput}
+                        name="EmpMob" id="EmpMob" />
+                    </div>
+
+                    <div>
+                        <label htmlFor="Email">Email</label>
+                        <input placeholder="abc@gmail.com" required type="email" autoComplete="off" 
+                         value={userReg.Email}
+                         onChange={handleInput}
+                        name="Email" id="Email" />
+                    </div>
+
+                    <div>
+                        <label htmlFor="Pass">Password</label>
+                        <input type="password" required autoComplete="off" 
+                         value={userReg.Pass}
+                         onChange={handleInput}
+                        name="Pass" id="Pass" />
+                    </div>
+
+                    <div>
+                        <label htmlFor="ConfirmPass">Confirm Password</label>
+                        <input type="password" required autoComplete="off"
+                         value={userReg.ConfirmPass}
+                         onChange={handleInput}
+                        name="ConfirmPass" id="ConfirmPassd" />
+                    </div>
+
+                    <button type="submit"> Registration</button>
+                </form>
+            </>
+           
+        )
+    
+    
+}
+
+export default ResigtrationForm;
