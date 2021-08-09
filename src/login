@@ -1,0 +1,51 @@
+import { e } from "mathjs";
+import React from "react";
+import { useState } from "react";
+
+export default function Login(){
+
+    const [empid, setEmpId] = useState("");
+    const [pass, setPass] = useState("");
+
+    const [allEntry,setAllEntry] = useState([]);
+
+    const SubmitForm = () => {
+        // e.preventDefault();
+
+        if(empid && pass ){
+        const newEntry = {id: new Date().getTime().toString ,empid : empid , pass : pass};
+       // setAllEntry([...allEntry, new]);
+        setEmpId("");
+        setPass("");
+        }
+        else{
+            alert("Fill the data!")
+        }
+    }
+
+    return(  
+    <>
+    <form action="" onSubmit={SubmitForm}>
+        <div>
+            <label htmlFor="EmpId">Employee Id</label>
+            <input type="text" autoComplete="off"
+            value={empid}
+            onChange={(e) => setEmpId(e.target.value)}
+            name="EmpId" id="EmpId" />
+        </div>
+
+        <div>
+            <label htmlFor="Pass">Password</label>
+            <input type="password" autoComplete="off"
+            value={pass}
+            onChange={(e) => setPass(e.target.value)}
+            name="Pass" id="Pass" />
+        </div>
+
+        <button type="submit">Login</button>
+        <button type="submit">Sign In</button>
+    </form>
+    
+    </>
+    )
+}
